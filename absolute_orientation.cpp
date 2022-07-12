@@ -6,8 +6,6 @@
 using namespace std;
 using namespace Eigen;
 
-// 参考:https://blog.csdn.net/xiaowuboshi/article/details/85246408
-
 void generateTestData(vector<Vector3f> & inPoints, vector<Vector3f> & outPoints,  const Matrix4f &T , int pointNum = 3 ) {
 
 	inPoints.clear();
@@ -120,8 +118,6 @@ void absoluteOrientation(vector<Vector3f> & inPoints, vector<Vector3f> & outPoin
 
 	Matrix3f R = V * U.transpose();
 
-	//Matrix3f R = V * U;
-	//与文章中的不同
 	Vector3f T =  outAverage - R * inAverage ;
 
 	cout << "R : \n" << R << endl;
@@ -145,7 +141,6 @@ int main()
 
 	cout << "ground truth : \n" << groundTruth << endl;
 
-	//选3个点的话，可能会出现线性相关的情况得不到正确的解?
 	generateTestData(p, q, groundTruth, 10);
 
 	absoluteOrientation(p, q);
